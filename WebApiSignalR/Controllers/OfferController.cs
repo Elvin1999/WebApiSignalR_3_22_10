@@ -16,11 +16,26 @@ namespace WebApiSignalR.Controllers
             return FileHelper.Read();
         }
 
+        [HttpGet("Room")]
+        public double Get(string room)
+        {
+            return FileHelper.Read(room);
+        }
+
+        [HttpGet("IncreaseRoom")]
+        public void IncreaseRoom(string room, double data)
+        {
+            var result = FileHelper.Read(room) + data;
+            FileHelper.Write(room, result);
+        }
+
         [HttpGet("Increase")]
         public void Increase(double data)
         {
-            var result=FileHelper.Read()+data;
+            var result = FileHelper.Read() + data;
             FileHelper.Write(result);
         }
+
+
     }
 }
